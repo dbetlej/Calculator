@@ -21,3 +21,6 @@ Route::get('/', function () {
 Route::get('/hi', [UserController::class, 'show']);
 Route::get('/register', [UserController::class, 'register']);
 Route::post('/register', [UserController::class, 'create_user']);
+Route::get('/login', [UserController::class, 'show']);
+Route::post('/login', [UserController::class, 'login']);
+Route::get('/dashboard', [UserController::class, 'dashboard']);
