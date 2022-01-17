@@ -15,13 +15,26 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
     
-     public function show(){
-         return view('login');
-     }
-     public function register(){
-         return view('register');
-     }
-     public function create_user(Request $request){
+    public function show(){
+        if(Auth::check())
+            return redirect('/dashboard');
+        return view('login');
+    }
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
+    }
+    public function register(){
+        return view('register');
+    }
+    public function dashboard(){
+        if(!Auth::check())
+            return redirect('/login');
+        return view('dashboard');
+    }
+    public function create_user(Request $request){
 
         if(empty($request->email) || empty($request->login) || empty($request->password) || empty($request->rpassword))
             return false;
