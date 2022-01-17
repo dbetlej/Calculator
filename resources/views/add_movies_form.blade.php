@@ -1,6 +1,5 @@
 <html>
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +7,6 @@
     </head>
     <body>
         <a href="/logout">Logout</a>
-        <div>Witaj, {{ $user->login }}.</div>
+        <div></div>
     </body>
 </html>

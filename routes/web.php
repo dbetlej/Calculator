@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MoviesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/login', [UserController::class, 'show']);
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::get('/logout', [UserController::class, 'logout']);
+Route::get('/add_movies', [MoviesController::class, 'add_movies']);

@@ -32,8 +32,11 @@ class UserController extends Controller
     public function dashboard(){
         if(!Auth::check())
             return redirect('/login');
-        return view('dashboard');
+        
+        $data['user'] = Auth::user();
+        return view('dashboard', $data);
     }
+    
     public function create_user(Request $request){
 
         if(empty($request->email) || empty($request->login) || empty($request->password) || empty($request->rpassword))
