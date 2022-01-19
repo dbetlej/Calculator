@@ -7,6 +7,13 @@
     </head>
     <body>
         <a href="/logout">Logout</a>
-        <div></div>
+
+        <form action="/register" method="POST">
+            @csrf
+            <input type="title" name="title" placeholder="LIST NAME" >
+            <input type="submit" value="register" >
+        </form>
+
+        </div>
     </body>
 </html>
