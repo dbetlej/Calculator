@@ -27,3 +27,4 @@ Route::post('/login', [UserController::class, 'login']);
 Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/add_movies', [MoviesController::class, 'add_movies']);
+Route::post('/add_movies', [MoviesController::class, 'save_movie']);

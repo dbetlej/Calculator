@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.add-movie-form{
+    transform: translate(-50%, -50%);
+    background:rgb(221, 221, 221);
+    width:400px;
+    height:auto;
+}
