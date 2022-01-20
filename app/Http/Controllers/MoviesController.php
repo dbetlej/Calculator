@@ -9,7 +9,7 @@ use App\Models\Movies;
 class MoviesController extends Controller
 {
     public function add_movies(){
-        return view('add_movies_form');
+        return $this->load('add_movie_form', []);
     }
 
     public function save_movie(Request $request){
@@ -81,12 +81,12 @@ class MoviesController extends Controller
     public function movies(){
         $moviesModel = new Movies();
         $data['movies'] = $moviesModel->get_all();
-        return view('movies', $data);
+        return $this->load('movies', $data);
     }
 
     public function get_movie(int $movieId){
         $moviesModel = new Movies();
         $data['movie'] = $moviesModel->get($movieId);
-        return view('edit_movie_form', $data);
+        return $this->load('edit_movie_form', $data);
     }
 }

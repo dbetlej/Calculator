@@ -34,7 +34,7 @@ class UserController extends Controller
             return redirect('/login');
         
         $data['user'] = Auth::user();
-        return view('dashboard', $data);
+        return $this->load('dashboard', $data);
     }
     
     public function create_user(Request $request){
