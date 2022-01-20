@@ -9,8 +9,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     </head>
     <body>
-        {{ $user->login }}
-        {!! $content !!}
-        <script src="/js/app.js"></script>
+        <div class="container max-w-full pt-40">
+            <div class="flex flex-row justify-center">
+                <p class="px-2"><a href="/dashboard">Logo</a></p>
+                <p class="px-2">Witaj, {{ $user->login }}</p>
+            </div>
+        </div>
+            <div class="flex flex-row justify-center pt-20">
+                {!! $content !!}
+                <script src="/js/app.js"></script>
+            </div>
     </body>
 </html>

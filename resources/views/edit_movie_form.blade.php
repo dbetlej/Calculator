@@ -1,14 +1,3 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <link href="/css/app.css" rel="stylesheet">
-        <title>taskarr.com - array IT.</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
-    </head>
-    <body>
         <a href="/logout">Logout</a>
         <button id="edit_modal">Open form.</button>
         <form class="absolute top-1/2 left-1/2 add-movie-form py-2" id="edit_movie" style="display:none;" >
@@ -30,9 +19,3 @@
             <input type="button" class="edit_button" value="SAVE" >
             <input type="hidden" id="movieId" value="{{ $movie->id }}">
         </form>
-
-        </div>
-
-        <script src="/js/app.js"></script>
-    </body>
-</html>
