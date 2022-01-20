@@ -46,4 +46,47 @@ class MoviesController extends Controller
             'msg' => 'Fail to add.'
         ]);
     }
+
+    public function edit_movie(int $movieId, Request $request){
+        if(empty($request->title) || empty($movieId)){
+            return response()->json([
+                'status' => 1,
+                'msg' => 'No data.'
+            ]);
+        }
+
+        $favourite = $request->favourite;
+        $watched = $request->watched;
+        $url = "";
+
+        if(!empty($request->url))
+            $url = $request->url;
+
+        $moviesModel = new Movies();
+        $affected = $moviesModel->update_movie($request->title, $url, $favourite, $watched, $movieId);
+        
+        if($affected != 0){
+            return response()->json([
+                'status' => 0,
+                'msg' => 'Success.',
+                'movieId' => $movieId
+            ]);
+        }
+        return response()->json([
+            'status' => 2,
+            'msg' => 'Fail to add.'
+        ]);
+    }
+
+    public function movies(){
+        $moviesModel = new Movies();
+        $data['movies'] = $moviesModel->get_all();
+        return view('movies', $data);
+    }
+
+    public function get_movie(int $movieId){
+        $moviesModel = new Movies();
+        $data['movie'] = $moviesModel->get($movieId);
+        return view('edit_movie_form', $data);
+    }
 }

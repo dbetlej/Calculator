@@ -30,7 +30,7 @@ class Movies extends Model
         ]);
     }
 
-    public function get_movie(int $id){
+    public function get(int $id){
         return DB::table('movies')->where('id', $id)->first();
     }
 

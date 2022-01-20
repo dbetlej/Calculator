@@ -28,3 +28,6 @@ Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/add_movies', [MoviesController::class, 'add_movies']);
 Route::post('/add_movies', [MoviesController::class, 'save_movie']);
+Route::get('/movies', [MoviesController::class, 'movies']);
+Route::get('/movie/{movieId}', [MoviesController::class, 'get_movie']);
+Route::post('/movie/{movieId}', [MoviesController::class, 'edit_movie']);

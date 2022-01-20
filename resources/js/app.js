@@ -20,3 +20,41 @@ $('#add_button').click(function(){
 $('#open_modal').click(function(){
     $('#add_movies').fadeToggle();
 });
+
+$('#edit_modal').click(function(){
+    $('#edit_movie').fadeToggle();
+});
+
+$('.close').click(function(){
+    $('#add_movies').fadeOut();
+})
+
+
+//  Vanilla s
+document.addEventListener('click', function(event){
+    if(!event.target.matches('.edit_button')) return;
+    event.preventDefault();
+    
+    var favourite = 0;
+    var watched = 0;
+    if(document.getElementById('favourite').checked){
+        favourite = 1;
+    }
+    if(document.getElementById('watched').checked){
+        watched = 1;
+    }
+    var fd = new FormData();
+    fd.append('title', document.getElementById('title').value);
+    fd.append('url', document.getElementById('url').value);
+    fd.append('favourite', favourite);
+    fd.append('watched', watched);
+    fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
+    var movieId = document.getElementById('movieId').value;
+    var req = new XMLHttpRequest();
+    req.open('POST', '/movie/'+movieId, true);
+    req.send(fd);
+    req.onload = function(){
+        console.log(req.response);
+    }
+}, false);
+//  Vanilla e
