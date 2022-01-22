@@ -8,8 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
-class Controller extends BaseController
-{
+class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function load(string $content, array $data){
         if(!Auth::check()){
@@ -21,3 +20,15 @@ class Controller extends BaseController
     }
 }
 
+class LogoController extends BaseController{
+    
+    /**
+     * Logo.
+     *
+     */
+
+    use Illuminate\Support\Facades\Storage;
+    public function logo(){
+        $url = Storage::url('img/taskARR-logo.svg');
+    }
+}
