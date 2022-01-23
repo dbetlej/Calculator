@@ -19,16 +19,3 @@ class Controller extends BaseController{
         return view('layout', $data);
     }
 }
-
-class LogoController extends BaseController{
-    
-    /**
-     * Logo.
-     *
-     */
-
-    use Illuminate\Support\Facades\Storage;
-    public function logo(){
-        $url = Storage::url('img/taskARR-logo.svg');
-    }
-}

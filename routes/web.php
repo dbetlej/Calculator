@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LogoController;
 use App\Http\Controllers\MoviesController;
 
 /*
@@ -31,3 +32,4 @@ Route::post('/add_movies', [MoviesController::class, 'save_movie']);
 Route::get('/movies', [MoviesController::class, 'movies']);
 Route::get('/movie/{movieId}', [MoviesController::class, 'get_movie']);
 Route::post('/movie/{movieId}', [MoviesController::class, 'edit_movie']);
+Route::resource('/logo', LogoController::class);
