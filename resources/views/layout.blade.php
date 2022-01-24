@@ -11,7 +11,8 @@
     <body>
         <div class="container max-w-full pt-40">
             <div class="flex flex-row justify-center">
-                <p class="px-2"><a href="/logo">Logo</a></p>
+                <p class="px-2"><a href="/dashboard"><img src="/img/taskARR.png"></a></p>
+                <img src="{{ asset('storage/taskARR.svg/') }}" class="profile-image md:block hidden mt-8 mb-4"/>
                 <p class="px-2">Witaj, {{ $user->login }}</p>
             </div>
         </div>
