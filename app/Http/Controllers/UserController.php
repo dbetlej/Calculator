@@ -40,28 +40,35 @@ class UserController extends Controller
     public function create_user(Request $request){
 
         if(empty($request->email) || empty($request->login) || empty($request->password) || empty($request->rpassword))
-            return false;
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
 
         if($request->password != $request->rpassword)
-            return false;
-        
+            return back()->withErrors([
+                'password' => 'The provided credentials do not match our records.', // CHANGE IT.
+            ]);
         $dudesModel = new Dudes();
         $res = $dudesModel->chk_email($request->email);
         if(!empty($res->id))
-            return false;
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
 
         $tempPass = Hash::make($request->password);
         $user_id = $dudesModel->create_user($request->login, $request->email, $tempPass, 0); // string $login, string $email, string $password, int $VIP
         if(!is_numeric($user_id))
-            return false;
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.'
+            ]);
 
-        return $user_id;
+        return redirect('/login');
     }
       public function login(Request $request){
 
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required']
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -71,7 +78,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'The provided credentials do not match our records.'
         ]);
     }
 }
