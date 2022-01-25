@@ -13,7 +13,20 @@ $('#add_button').click(function(){
       dataType: 'json',
       data: $('#add_movies').serialize()
    }).always(function(res){
-       console.log(res.status);
+        console.log(res.status);
+        if(res.status == 1 || res.status == 2){
+        // return false
+        $('#info_popup').html(res.msg).fadeIn();
+        setTimeout(function(){
+           $('#info_popup').fadeOut();
+        },5000);
+       } else {
+        // return pass
+        $('#info_popup').html(res.msg).fadeIn();
+        setTimeout(function(){
+           $('#info_popup').fadeOut();
+        },5000);
+       }
    });
 });
 

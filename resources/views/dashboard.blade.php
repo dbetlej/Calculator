@@ -35,3 +35,7 @@
     </label>
     <input type="button" id="add_button" value="ADD MOVIE" >
 </form>
+
+<div class="absolute bottom-2 right-1 p-5" id="info_popup" style="display:none;" >    
+    Save successfully.
+</div>
