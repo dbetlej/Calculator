@@ -24,7 +24,7 @@ $('#add_button').click(function(){
         // return pass
         $('#info_popup').html(res.msg).fadeIn();
         setTimeout(function(){
-           $('#info_popup').fadeOut();
+           $('#info_popup').fadeOut(); 
         },5000);
        }
    });
