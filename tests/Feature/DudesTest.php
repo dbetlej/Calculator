@@ -9,6 +9,7 @@ use App\Models\Dudes;
 
 class DudesTest extends TestCase
 {
+    use RefreshDatabase;
     /** 
      *   debug
      *  

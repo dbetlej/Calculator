@@ -17,6 +17,7 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('url')->unique();
+            $table->string('series')->nullable();
             $table->boolean('favourite');
             $table->boolean('watched');
             $table->timestamps();
