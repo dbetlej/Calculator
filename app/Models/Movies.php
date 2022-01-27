@@ -56,4 +56,16 @@ class Movies extends Model
     public function delete_movie(int $id){
         return DB::table('movies')->where('id', $id)->delete();
     }
+
+    // public function get_list(int $id){
+    //     return DB::table('movies')->where('id', $id)->first();
+    // }
+
+    // public function get_all(){
+    //     return DB::table('movies')->get();
+    // }
+
+    // public function delete_movie(int $id){
+    //     return DB::table('movies')->where('id', $id)->delete();
+    // }
 }
