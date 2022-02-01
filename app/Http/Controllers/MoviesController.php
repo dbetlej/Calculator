@@ -103,4 +103,16 @@ class MoviesController extends Controller
         $data['movie'] = Movies::find()-;
         return $this->load('edit_movie_form', $data);
     }
+
+    public function list(){
+        $listModel = new Movies();
+        $data['lists'] = $listsModel->get_all();
+        return $this->load('lists', $data);
+    }
+
+    public function get_list(int $listId){
+        $listModel = new Movies();
+        $data['list'] = $moviesModel->get($listId);
+        return $this->load('edit_list_form', $data);
+    }
 }

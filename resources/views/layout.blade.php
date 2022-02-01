@@ -18,11 +18,16 @@
                     <p class="px-2 text-sm">tip for today</p>
                 </div>
             </div>
-            <div class="p-10 flex flex-nowrap justify-center">
+            <div class="pt-5 pb-0 flex flex-nowrap justify-center">
                 <div class="p-2">Marvel</div>
                 <div class="p-2">DC Legends</div>
                 <div class="p-2">Star wars</div>
             </div>
+            <div class="flex flex-nowrap justify-center">
+                <p class="px-2 text-sm">last</p>
+                <p class="px-2 text-sm">clear</p>
+            </div>
+
             <div class="p-5 text-right">
             <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                 <a href="/logout">Logout</a>
