@@ -48,16 +48,24 @@ class UserController extends Controller
             return back()->withErrors([
                 'password' => 'The provided credentials do not match our records.', // CHANGE IT.
             ]);
-        $dudesModel = new Dudes();
-        $res = $dudesModel->chk_email($request->email);
-        if(!empty($res->id))
+
+        $dude = Dudes::where('email', $request->email)->first();
+        if(empty($dude->id))
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ]);
 
         $tempPass = Hash::make($request->password);
-        $user_id = $dudesModel->create_user($request->login, $request->email, $tempPass, 0); // string $login, string $email, string $password, int $VIP
-        if(!is_numeric($user_id))
+
+        $dude = Dudes::create([
+            'login' => $request->login,
+            'email' => $request->email,
+            'password' => $tempPass,        
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+
+        if(!is_numeric($dude->id))
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.'
             ]);

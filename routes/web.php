@@ -32,8 +32,3 @@ Route::get('/add_movies', [MoviesController::class, 'add_movies']);
 Route::post('/add_movies', [MoviesController::class, 'save_movie']);
 Route::get('/movie/{movieId}', [MoviesController::class, 'get_movie']);
 Route::post('/movie/{movieId}', [MoviesController::class, 'edit_movie']);
-
-Route::get('/add_list', [ListController::class, 'add_list']);
-Route::post('/add_list', [ListController::class, 'save_list']);
-Route::get('/add_list', [ListController::class, 'add_list']);
-Route::get('/movies', [MoviesController::class, 'movies']);

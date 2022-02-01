@@ -1,4 +1,3 @@
-        <a href="/logout">Logout</a>
         <button id="edit_modal">Open form.</button>
         <form class="absolute top-1/2 left-1/2 add-movie-form py-2" id="edit_movie" style="display:none;" >
             <div class="relative w-full mt-2">
@@ -6,6 +5,7 @@
             </div>
 
             @csrf
+            <input type="text" id="series" name="series" placeholder="TITLE" value="{{ $movie->series }}">
             <input type="text" id="title" name="title" placeholder="MOVIE NAME" value="{{ $movie->name }}">
             <input type="text" id="url" name="url" placeholder="URL TO VIDEO" value="{{ $movie->url }}">
             <input type="checkbox" id="favourite" name="favourite" id="favourite" @if($movie->favourite == 1) checked @endif>

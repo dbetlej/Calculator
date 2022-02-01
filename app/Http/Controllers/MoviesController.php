@@ -31,14 +31,21 @@ class MoviesController extends Controller
         if(!empty($request->url))
             $url = $request->url;
 
-        $moviesModel = new Movies();
-        $movieId = $moviesModel->add_movie($request->title, $url, $favourite, $watched);
-        
-        if($movieId != 0){
+        $movie = Movies::create([
+            'name' => $request->title,
+            'url' => $url,
+            'favourite' => $favourite,
+            'watched' => $watched,       
+            'series' => null,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+                
+        if($movie->id != 0){
             return response()->json([
                 'status' => 0,
                 'msg' => 'Success.',
-                'movieId' => $movieId
+                'movieId' => $movie->id
             ]);
         }
         return response()->json([
@@ -62,14 +69,23 @@ class MoviesController extends Controller
         if(!empty($request->url))
             $url = $request->url;
 
-        $moviesModel = new Movies();
-        $affected = $moviesModel->update_movie($request->title, $url, $favourite, $watched, $movieId);
-        
-        if($affected != 0){
+        $movie = Movie::find($movieId);
+        $movie->name = $request->title;
+        $movie->url = $url;
+        $movie->favourite = $favourite;
+        $movie->watched = $watched;
+        $movie->series = $series;
+        $movie->updated_at = date('Y-m-d H:i:s');
+
+        if($movie->isDirty()){
+            $movie->save();
+        }
+
+        if($movie->wasChanged()){
             return response()->json([
                 'status' => 0,
                 'msg' => 'Success.',
-                'movieId' => $movieId
+                'movieId' => $movie->id,
             ]);
         }
         return response()->json([
@@ -79,14 +95,12 @@ class MoviesController extends Controller
     }
 
     public function movies(){
-        $moviesModel = new Movies();
-        $data['movies'] = $moviesModel->get_all();
+        $data['movies'] = Movies::get();
         return $this->load('movies', $data);
     }
 
     public function get_movie(int $movieId){
-        $moviesModel = new Movies();
-        $data['movie'] = $moviesModel->get($movieId);
+        $data['movie'] = Movies::find()-;
         return $this->load('edit_movie_form', $data);
     }
 }
