@@ -9,11 +9,8 @@ use App\Models\Movies;
 
 class MoviesTest extends TestCase
 {
-    /**
-     * Movie test.
-     *
-     * @return void
-     */
+    use RefreshDatabase;
+    
     public function test_check_create_movie()
     {
         $movie = Movies::factory()->create();
