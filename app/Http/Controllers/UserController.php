@@ -50,19 +50,22 @@ class UserController extends Controller
             ]);
 
         $dude = Dudes::where('email', $request->email)->first();
-        if(empty($dude->id))
+        if(!empty($dude->id))
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ]);
 
         $tempPass = Hash::make($request->password);
 
+<<<<<<< HEAD
         $dude = Dudes::create([
             'login' => ucfirst($request->login),
+=======
+        $dude = Dudes::factory()->create([
+            'login' => $request->login,
+>>>>>>> e246f5aa42c74281735c61c7e3a3737b0bd15eac
             'email' => $request->email,
             'password' => $tempPass,        
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         if(!is_numeric($dude->id))

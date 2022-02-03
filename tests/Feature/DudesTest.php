@@ -10,27 +10,8 @@ use App\Models\Dudes;
 class DudesTest extends TestCase
 {
     use RefreshDatabase;
-    /** 
-     *   debug
-     *  
-     *   use RefreshDatabase;
-     */
 
-
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-    /** @test */ 
-    public function check_if_dude_can_login() {
+    public function test_if_dude_can_login() {
         $dude = Dudes::factory()->create();
         $this->assertModelExists($dude);
         $response = $this->post('/login', [
@@ -40,8 +21,7 @@ class DudesTest extends TestCase
         $response->assertRedirect('/dashboard');
     }
 
-    /** @test */ 
-    public function check_if_dude_cant_login() {
+    public function test_if_dude_cant_login() {
         $dude = Dudes::factory()->create();
         $this->assertModelExists($dude);
         $response = $this->post('/login', [
@@ -51,8 +31,7 @@ class DudesTest extends TestCase
         $response->assertSessionHasErrors(['email']);
     }
 
-    /** @test */
-    public function check_if_dude_can_register() {
+    public function test_if_dude_can_register() {
         $response = $this->post('/register', [
             'login' => 'login',
             'email' => 'example@example.com',
@@ -62,8 +41,7 @@ class DudesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-    /** @test */
-    public function check_if_dude_cant_register() {
+    public function test_if_dude_cant_register() {
         $response = $this->post('/register', [
             'login' => 'login',
             'email' => 'example@example.com',

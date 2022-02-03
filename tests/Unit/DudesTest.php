@@ -9,7 +9,11 @@ use App\Models\Dudes;
 
 class DudesTest extends TestCase
 {
+<<<<<<< HEAD
     // use RefreshDatabase;
+=======
+    use RefreshDatabase;
+>>>>>>> e246f5aa42c74281735c61c7e3a3737b0bd15eac
     public function test_creating_dude()
     {
         $dude = Dudes::factory()->create([
@@ -18,6 +22,25 @@ class DudesTest extends TestCase
         $this->assertModelExists($dude);
         $this->assertDatabaseHas('dudes', [
             'email' => $dude->email
+        ]);
+    }
+
+    public function test_delete_dude()
+    {
+        $dude = Dudes::factory()->create();
+        $this->assertModelExists($dude);
+        $dude->delete();
+        $this->assertDeleted($dude);
+    }
+
+    public function test_update_dude()
+    {
+        $dude = Dudes::factory()->create();
+        $this->assertModelExists($dude);
+        $dude->login = 'Jakuza';
+        $dude->save();
+        $this->assertDatabaseHas('dudes', [
+            'login' => 'Jakuza'
         ]);
     }
 }
