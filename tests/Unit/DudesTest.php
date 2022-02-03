@@ -9,11 +9,12 @@ use App\Models\Dudes;
 
 class DudesTest extends TestCase
 {
-    // test_
-    use RefreshDatabase;
+    // use RefreshDatabase;
     public function test_creating_dude()
     {
-        $dude = Dudes::factory()->create();
+        $dude = Dudes::factory()->create([
+            'login' => 'kazak'
+        ]);
         $this->assertModelExists($dude);
         $this->assertDatabaseHas('dudes', [
             'email' => $dude->email
