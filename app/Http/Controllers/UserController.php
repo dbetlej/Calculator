@@ -57,13 +57,8 @@ class UserController extends Controller
 
         $tempPass = Hash::make($request->password);
 
-<<<<<<< HEAD
         $dude = Dudes::create([
             'login' => ucfirst($request->login),
-=======
-        $dude = Dudes::factory()->create([
-            'login' => $request->login,
->>>>>>> e246f5aa42c74281735c61c7e3a3737b0bd15eac
             'email' => $request->email,
             'password' => $tempPass,        
         ]);

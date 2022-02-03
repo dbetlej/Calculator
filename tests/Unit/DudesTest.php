@@ -9,11 +9,7 @@ use App\Models\Dudes;
 
 class DudesTest extends TestCase
 {
-<<<<<<< HEAD
     // use RefreshDatabase;
-=======
-    use RefreshDatabase;
->>>>>>> e246f5aa42c74281735c61c7e3a3737b0bd15eac
     public function test_creating_dude()
     {
         $dude = Dudes::factory()->create([
