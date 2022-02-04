@@ -39,8 +39,8 @@ class Dudes extends Model
     protected $attributes = [
         'login' => '',
         'email' => '',
-        'email_verified_at' => '',
-        'password' => '',        
+        'email_verified_at' => null,
+        'password' => '',
         'remember_token' => '',
         'VIP' => 0,
         'created_at' => '1998-11-13 05:09:97',
