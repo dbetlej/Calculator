@@ -11,19 +11,19 @@ class MovieTest extends TestCase
 {
     use RefreshDatabase;
 
-    // get movie list
-    public function test_if_dude_can_get_movie_list() {
-        $response = $this->post('/movies', []);
-        
+    // TODO:
+    // create movie
+    public function test_if_dude_can_create_movie() {
+        $response = $this->post('/');
+
         $response->assertRedirect('/dashboard');
     }
-
-    // add list
-    // delete list
-    // edit list
-
-    // get movie
-    // add movie
-    // delete movie
     // edit movie
+    // get movie
+    // delete movie
+
+    // create movie_list
+    // edit movie_list
+    // get movie_list
+    // delete movie_list
 }
