@@ -35,7 +35,7 @@
                     <p class="message">Not registered? <a href="#">Create an account</a></p>
                 </form> 
 
-            <!-- TODO: add + translate
+            <!-- FIXME: -->
                 <form class="register-form">
                     <input type="text" placeholder="name"/>
                     <input type="password" placeholder="password"/>
@@ -43,7 +43,6 @@
                     <button>create</button>
                     <p class="message">Already registered? <a href="#">Sign In</a></p>
                 </form>
-            -->
         </div>
     </body>
 </html>

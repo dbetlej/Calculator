@@ -5,25 +5,18 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+
 use App\Models\Dudes;
+use App\Models\Movies;
 
 class MovieTest extends TestCase
 {
     use RefreshDatabase;
 
     // TODO:
-    // create movie
-    public function test_if_dude_can_create_movie() {
-        $response = $this->post('/');
+    // public function test_dude_create_movie() {
+    //     $movie = Movies::factory()->create();
 
-        $response->assertRedirect('/dashboard');
-    }
-    // edit movie
-    // get movie
-    // delete movie
-
-    // create movie_list
-    // edit movie_list
-    // get movie_list
-    // delete movie_list
+    //     $this->assertModelExists($movie);
+    // }
 }
