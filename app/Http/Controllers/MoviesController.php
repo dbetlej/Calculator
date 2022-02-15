@@ -10,10 +10,19 @@ use App\Models\Movies;
 class MoviesController extends Controller
 {
     public function add_movies(){
+        if(!Auth::check())
+            return redirect('/login');
+
         return $this->load('add_movie_form', []);
     }
 
     public function save_movie(Request $request){
+        if(!Auth::check())
+            return response()->json([
+                'status' => 1,
+                'msg' => 'No auth.'
+            ]);
+
         if(empty($request->title)){
             return response()->json([
                 'status' => 1,
@@ -56,6 +65,12 @@ class MoviesController extends Controller
     }
 
     public function edit_movie(int $movieId, Request $request){
+        if(!Auth::check())
+            return response()->json([
+                'status' => 1,
+                'msg' => 'No auth.'
+            ]);
+
         if(empty($request->title) || empty($movieId)){
             return response()->json([
                 'status' => 1,
@@ -90,28 +105,40 @@ class MoviesController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 2,
+            'status' => 1,
             'msg' => 'Fail to add.'
         ]);
     }
 
     public function movies(){
+        if(!Auth::check())
+            return redirect('/login');
+
         $data['movies'] = Movies::get();
         return $this->load('movies', $data);
     }
 
     public function get_movie(int $movieId){
-        $data['movie'] = Movies::find()-;
+        if(!Auth::check())
+            return redirect('/login');
+
+        $data['movie'] = Movies::find($movieId);
         return $this->load('edit_movie_form', $data);
     }
 
     public function list(){
+        if(!Auth::check())
+            return redirect('/login');
+
         $listModel = new Movies();
         $data['lists'] = $listsModel->get_all();
         return $this->load('lists', $data);
     }
 
     public function get_list(int $listId){
+        if(!Auth::check())
+            return redirect('/login');
+
         $listModel = new Movies();
         $data['list'] = $moviesModel->get($listId);
         return $this->load('edit_list_form', $data);

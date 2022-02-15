@@ -21,13 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hi', [UserController::class, 'show']);
 Route::get('/register', [UserController::class, 'register']);
 Route::post('/register', [UserController::class, 'create_user']);
 Route::get('/login', [UserController::class, 'show']);
 Route::post('/login', [UserController::class, 'login']);
-Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::get('/logout', [UserController::class, 'logout']);
+
+Route::get('/dashboard', [UserController::class, 'dashboard']);
+
 Route::get('/add_movies', [MoviesController::class, 'add_movies']);
 Route::post('/add_movies', [MoviesController::class, 'save_movie']);
 Route::get('/movie/{movieId}', [MoviesController::class, 'get_movie']);
