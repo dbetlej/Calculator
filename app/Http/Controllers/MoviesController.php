@@ -110,6 +110,31 @@ class MoviesController extends Controller
         ]);
     }
 
+    public function delete_movie(int $movieId, Request $request){
+        if(!Auth::check())
+            return response()->json([
+                'status' => 1,
+                'msg' => 'No auth.'
+            ]);
+
+        $delMovie = Movies::find($movieId);
+        $delMovie->delete();
+
+        $delMovie = Movies::find($movieId);
+
+        if(empty($delMovie->id)){
+            return response()->json([
+                'status' => 0,
+                'msg' => 'Success.',
+                'movieId' => $movie->id,
+            ]);
+        }
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Deleted fail.'
+        ]);
+    }
+
     public function movies(){
         if(!Auth::check())
             return redirect('/login');

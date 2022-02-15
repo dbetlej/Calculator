@@ -21,4 +21,9 @@ class MovieTest extends TestCase
         $response = $this->post('/movie/1', []);
         $response->assertJsonFragment(['msg' => 'No auth.']);
     }
+    
+    public function test_user_cant_delete_movie() {
+        $response = $this->delete('/movie/1', []);
+        $response->assertJsonFragment(['msg' => 'No auth.']);
+    }
 }
