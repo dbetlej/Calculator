@@ -33,7 +33,6 @@ html {
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
-  background:#0f1010;
 }
 
 /*
@@ -639,6 +638,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-transparent {
   background-color: transparent;
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-purple-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(126 34 206 / var(--tw-bg-opacity));
+}
 .p-6 {
   padding: 1.5rem;
 }
@@ -664,13 +671,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -678,8 +689,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pt-20 {
   padding-top: 5rem;
 }
-.pt-40 {
-  padding-top: 10rem;
+.pt-4 {
+  padding-top: 1rem;
 }
 .pt-5 {
   padding-top: 1.25rem;
@@ -764,6 +775,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(126 34 206 / var(--tw-text-opacity));
 }
+.text-purple-200 {
+  --tw-text-opacity: 1;
+  color: rgb(233 213 255 / var(--tw-text-opacity));
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -791,13 +806,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: auto;
 }
 
-/* Form login */
 .form {
+    background: #101010;
     position: relative;
-    background: #191a1a;
     max-width: 420px;
     z-index: 1;
-    padding: 30px;
+    padding: 30px 30px 15px 30px;
     text-align: center;
     margin: 0 auto 100px;
     border-top-left-radius: 8px;
@@ -823,7 +837,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
   .form input {
     outline: 0;
-    background: #131515;
+    background: #191919;
     margin: 0 0 15px;
     padding: 15px;
     width: 100%;
@@ -838,7 +852,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
   .form button {
     outline: 0;
-    background: #3f5e2d;
+    background: #4c7437;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -859,16 +873,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
   .form .message a {
     color: #563e99;
+    font-weight: 800;
     text-decoration: none;
   }
   .form .register-form {
     display: none;
   }
+
+  input::-moz-placeholder, textarea::-moz-placeholder {
+    opacity: 1; /* 1 */
+    color: #3f3f3f; /* 2 */
+  }
+  
+  input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    opacity: 1; /* 1 */
+    color: #3f3f3f; /* 2 */
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: #3f3f3f;
+  }
   
   .container {
     position: relative;
     z-index: 1;
-    max-width: 300px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   .container:before, .container:after {
@@ -898,8 +928,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .container .info span .fa {
     color: #EF3B3A;
   }
-  
-  /* END Form login */
+
+  .info-dayli{
+    padding:30px 0;
+  }
+
   body {
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;

@@ -19,30 +19,13 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased bg-black">
         <div class="container">
-            <div class="info">
-                <h1>taskARR - logo</h1><span>Simple task organizer</span>
-            </div>
+            <div class="py-16 text-center"><h1 class="text-3xl">taskARR logo</h1><span>Simple task organizer</a></span></div>
         </div>
-        <div class="form">
-            <div><img style="margin:0 auto 30px" src="{{ asset('img/profile-icon.svg') }}" width="50px" alt="profile icon"/></div>
-            
-            <form class="login-form">
-                    <input type="text" placeholder="username"/>
-                    <input type="password" placeholder="password"/>
-                    <button>login</button>
-                    <p class="message">Not registered? <a href="#">Create an account</a></p>
-                </form> 
-
-            <!-- FIXME: -->
-                <form class="register-form">
-                    <input type="text" placeholder="name"/>
-                    <input type="password" placeholder="password"/>
-                    <input type="text" placeholder="email address"/>
-                    <button>create</button>
-                    <p class="message">Already registered? <a href="#">Sign In</a></p>
-                </form>
+        <div class="form text-lg font-bold text-purple-200">
+            <div><a href="/login">LOGIN</a></div>
+            <div><a href="/register">REGISTER</a></div>
         </div>
     </body>
 </html>

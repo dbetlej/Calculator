@@ -8,11 +8,16 @@
         <title>taskarr.com - array IT.</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     </head>
-    <body>
-        <div class="container max-w-full pt-40">
+    <body class="bg-black text-white">
+        <div class="container max-w-full pt-4">
+            <div class="p-5 text-right">
+                <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-4 border border-gray-400 rounded shadow">
+                    <a href="/logout">Logout</a>
+                </button>
+            </div>
             <div class="flex flex-row justify-center">
-                <p class="px-2"><a href="/dashboard"><img src="/img/taskARR.png"></a></p>
-                <div>
+                <div><p class="px-2"><a href="/dashboard"><img src="/img/taskARR.png"></a></p></div>
+                <div class="info-dayli">
                     <p class="px-2">Witaj, {{ $user->login }}</p>
                     <p class="px-2">CTRL + D - duplicate content.</p>
                     <p class="px-2 text-sm">tip for today</p>
@@ -26,12 +31,6 @@
             <div class="flex flex-nowrap justify-center">
                 <p class="px-2 text-sm">last</p>
                 <p class="px-2 text-sm">clear</p>
-            </div>
-
-            <div class="p-5 text-right">
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                <a href="/logout">Logout</a>
-            </button>
             </div>
             <div class="flex flex-row justify-center">
                 <div class="flex text-purple-700 dark:text-purple-700">FAVORITE</div>
