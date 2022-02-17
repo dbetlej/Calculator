@@ -1,4 +1,4 @@
-<button id="open_modal">Open form.</button>
+<button id="add_movies_modal">Open form.</button>
 <form class="absolute top-1/2 left-1/2 add-movie-form py-2" action="/add_movies" id="add_movies" method="POST" style="display:none;" >
             
     <div class="relative w-full mt-2">

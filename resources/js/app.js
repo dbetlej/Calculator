@@ -30,11 +30,11 @@ $('#add_button').click(function(){
    });
 });
 
-$('#open_modal').click(function(){
+$('#add_movies_modal').click(function(){
     $('#add_movies').fadeToggle();
 });
 
-$('#edit_modal').click(function(){
+$('#edit_movies_modal').click(function(){
     $('#edit_movie').fadeToggle();
 });
 
