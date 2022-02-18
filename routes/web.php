@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogoController;
-use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\Proxy\MoviesProxy;
 use App\Http\Controllers\ListController;
 
 /*
@@ -29,8 +29,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/dashboard', [UserController::class, 'dashboard']);
 
-Route::get('/add_movies', [MoviesController::class, 'add_movies']);
-Route::post('/add_movies', [MoviesController::class, 'save_movie']);
-Route::get('/movie/{movieId}', [MoviesController::class, 'get_movie']);
-Route::post('/movie/{movieId}', [MoviesController::class, 'edit_movie']);
-Route::delete('/movie/{movieId}', [MoviesController::class, 'delete_movie']);
+Route::get('/add_movies', [MoviesProxy::class, 'add_movies']);
+Route::post('/add_movies', [MoviesProxy::class, 'save_movie']);
+Route::get('/movie/{movieId}', [MoviesProxy::class, 'get_movie']);
+Route::post('/movie/{movieId}', [MoviesProxy::class, 'edit_movie']);
+Route::delete('/movie/{movieId}', [MoviesProxy::class, 'delete_movie']);
