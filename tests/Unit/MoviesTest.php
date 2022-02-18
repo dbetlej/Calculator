@@ -28,7 +28,7 @@ class MoviesTest extends TestCase
             'name' => $movie->name
         ]);
         $movie->delete();
-        $this->assertDeleted($movie);
+        $this->assertModelMissing($movie);
     }
 
     public function test_check_update_movie()

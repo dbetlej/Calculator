@@ -27,7 +27,7 @@ class DudesTest extends TestCase
         $dude = Dudes::factory()->create();
         $this->assertModelExists($dude);
         $dude->delete();
-        $this->assertDeleted($dude);
+        $this->assertModelMissing($dude);
     }
 
     public function test_update_dude()
