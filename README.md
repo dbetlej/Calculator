@@ -1,11 +1,11 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/dbetlej/taskARR/5420ab68c7273ba465a68eed551ec0466425dd45/public/img/taskARR.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/dbetlej/taskARR/blob/master/public/img/taskARR.png?raw=true" width="250"></a></p>
 
 ## About taskARR
 
 taskARR is a management tool for organize Your time. 
 
 In progress:
-- [Movie] - movies organizer:
+[Movie] - movies organizer:
 - series
 - all
 - to watch
@@ -17,7 +17,7 @@ In progress:
 - custom theme
 
 After {alpha}:
-- [Music] - music organizer: 
+[Music] - music organizer: 
 - playlist
 - all
 - lisened
@@ -26,7 +26,7 @@ After {alpha}:
 - tip for today
 - custom theme
 
-- [Task] - task management tool:
+[Task] - task management tool:
 - list
 - task
 - custom icons
@@ -35,5 +35,5 @@ After {alpha}:
 - tip for today
 - custom theme
 
-- [Note] - simple note tool. (soon more...)
-- [CodeEditor] - fast note & test Your code. (soon more...)
+[Note] - simple note tool. (soon more...)
+[CodeEditor] - fast note & test Your code. (soon more...)
