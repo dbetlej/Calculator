@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 
 interface MoviesInterface
 {
-    public function add_movies(): mixed;
+    public function add_movies();
 
-    public function save_movie(Request $request): mixed;
+    public function save_movie(Request $request);
 
-    public function edit_movie(int $movieId, Request $request): mixed;
+    public function edit_movie(int $movieId, Request $request);
 
-    public function delete_movie(int $movieId, Request $request): mixed;
+    public function delete_movie(int $movieId, Request $request);
 
-    public function movies(): mixed;
+    public function movies();
 
-    public function get_movie(int $movieId): mixed;
+    public function get_movie(int $movieId);
 
-    public function list(): mixed;
+    public function list();
 
-    public function get_list(int $listId): mixed;
+    public function get_list(int $listId);
 }

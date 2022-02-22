@@ -3,129 +3,81 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Interfaces\MoviesInterface;
+use App\Http\Controllers\Request\MovieRequest;
+use App\Repositories\MoviesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Movies;
 
-class MoviesController extends Controller implements MoviesInterface
+class MoviesController extends Controller
 {
-    public function add_movies(): mixed
+    private $repository;
+
+    public function __construct(MoviesRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function getMoviesForm()
     {
         return $this->load('add_movie_form', []);
     }
 
-    public function save_movie(Request $request): mixed
+    public function postMovie(MovieRequest $request)
     {
-        $favourite = 0;
-        if(!empty($request->favourite))
-            $favourite = $request->favourite;
+        $data = $request->validated();
+        
+        $this->repository->create($data);
 
-        $watched = 0;
-        if(!empty($request->watched))
-            $watched = $request->watched;
-
-        $url = "";
-        if(!empty($request->url))
-            $url = $request->url;
-
-        $movie = Movies::create([
-            'name' => $request->title,
-            'url' => $url,
-            'favourite' => $favourite,
-            'watched' => $watched,       
-            'series' => null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-                
-        if($movie->id != 0){
-            return response()->json([
-                'status' => 0,
-                'msg' => 'Success.',
-                'movieId' => $movie->id
-            ]);
-        }
         return response()->json([
-            'status' => 2,
-            'msg' => 'Fail to add.'
+            'status' => 0,
+            'msg' => 'Success.'
+        ], 201);
+    }
+
+    public function putMovie(int $movieId, MovieRequest $request)
+    {
+        $data = $request->validated();
+
+        $this->repository->update($movieId, $data);
+
+        return response()->json([
+            'status' => 0,
+            'msg' => 'Success.'
         ]);
     }
 
-    public function edit_movie(int $movieId, Request $request): mixed
+    public function deleteMovie(int $movieId)
     {
-        $favourite = $request->favourite;
-        $watched = $request->watched;
-        $url = "";
+        $this->repository->delete($movieId);
 
-        if(!empty($request->url))
-            $url = $request->url;
-
-        $movie = Movie::find($movieId);
-        $movie->name = $request->title;
-        $movie->url = $url;
-        $movie->favourite = $favourite;
-        $movie->watched = $watched;
-        $movie->series = $series;
-        $movie->updated_at = date('Y-m-d H:i:s');
-
-        if($movie->isDirty()){
-            $movie->save();
-        }
-
-        if($movie->wasChanged()){
-            return response()->json([
-                'status' => 0,
-                'msg' => 'Success.',
-                'movieId' => $movie->id,
-            ]);
-        }
         return response()->json([
-            'status' => 1,
-            'msg' => 'Fail to add.'
+            'status' => 0,
+            'msg' => 'Success.'
         ]);
     }
 
-    public function delete_movie(int $movieId, Request $request): mixed
-    {
-        $delMovie = Movies::find($movieId);
-        $delMovie->delete();
-
-        $delMovie = Movies::find($movieId);
-
-        if(empty($delMovie->id)){
-            return response()->json([
-                'status' => 0,
-                'msg' => 'Success.',
-                'movieId' => $movie->id,
-            ]);
-        }
-        return response()->json([
-            'status' => 1,
-            'msg' => 'Deleted fail.'
-        ]);
-    }
-
-    public function movies(): mixed
+    public function movies()
     {
         $data['movies'] = Movies::get();
         return $this->load('movies', $data);
     }
 
-    public function get_movie(int $movieId): mixed
+    public function get_movie(int $movieId)
     {
         $data['movie'] = Movies::find($movieId);
         return $this->load('edit_movie_form', $data);
     }
 
-    public function list(): mixed
+    public function list()
     {
         $listModel = new Movies();
         $data['lists'] = $listsModel->get_all();
         return $this->load('lists', $data);
     }
 
-    public function get_list(int $listId): mixed
+    public function get_list(int $listId)
     {
         $listModel = new Movies();
         $data['list'] = $moviesModel->get($listId);
