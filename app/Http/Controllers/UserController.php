@@ -3,75 +3,58 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Dudes;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Request\CreateUserRequest;
+use App\Http\Request\LoginUserRequest;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+
+use App\Models\Dudes;
 
 class UserController extends Controller
 {
-    /** 
-     *  Handle Login
-     * 
-     * @return \Illuminate\View\View
-     */
+    public $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     
-    public function show(){
-        if(Auth::check())
-            return redirect('/dashboard');
+    public function show()
+    {
         return view('login');
     }
-    public function logout(Request $request){
+
+    public function logout(UserLogoutRequest $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/login');
     }
-    public function register(){
+
+    public function register()
+    {
         return view('register');
     }
-    public function dashboard(){
-        if(!Auth::check())
-            return redirect('/login');
-        
+
+    public function dashboard()
+    {
         $data['user'] = Auth::user();
+        
         return $this->load('dashboard', $data);
     }
     
-    public function create_user(Request $request){
-
-        if(empty($request->email) || empty($request->login) || empty($request->password) || empty($request->rpassword))
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
-
-        if($request->password != $request->rpassword)
-            return back()->withErrors([
-                'password' => 'The provided credentials do not match our records.', // CHANGE IT.
-            ]);
-
-        $dude = Dudes::where('email', $request->email)->first();
-        if(!empty($dude->id))
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
-
-        $tempPass = Hash::make($request->password);
-
-        $dude = Dudes::create([
-            'login' => ucfirst($request->login),
-            'email' => $request->email,
-            'password' => $tempPass,        
-        ]);
-
-        if(!is_numeric($dude->id))
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.'
-            ]);
+    public function create_user(CreateUserRequest $request)
+    {
+        $data = $request->validated();
+        $this->repository->create($data);
 
         return redirect('/login');
     }
-      public function login(Request $request){
-
+      
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
@@ -82,9 +65,5 @@ class UserController extends Controller
 
             return redirect()->intended('dashboard');
         }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.'
-        ]);
     }
 }
