@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Interfaces\MoviesInterface;
-use App\Http\Controllers\Request\MovieRequest;
+use App\Http\Requests\MovieRequest;
 use App\Repositories\MoviesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,7 @@ class MoviesController extends Controller
     public function postMovie(MovieRequest $request)
     {
         $data = $request->validated();
-        
+
         $this->repository->create($data);
 
         return response()->json([

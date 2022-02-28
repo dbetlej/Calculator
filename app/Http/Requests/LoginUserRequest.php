@@ -7,6 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 class LoginUserRequest extends FormRequest
 {
     /**
+     * The URI that users should be redirected to if validation fails.
+     *
+     * @var string
+     */
+    protected $redirect = '/login';
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -24,8 +30,8 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|exist:dudes,email',
-            'password' => 'required|current_password:api'
+            'email' => 'required|exists:dudes,email',
+            'password' => 'required'
         ];
     }
 }

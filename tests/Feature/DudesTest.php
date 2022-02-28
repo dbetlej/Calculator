@@ -12,7 +12,7 @@ class DudesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_if_dude_can_login() 
+    public function test_if_dude_can_login()
     {
         $dude = Dudes::factory()->create();
         $this->assertModelExists($dude);
@@ -25,7 +25,7 @@ class DudesTest extends TestCase
         $response->assertRedirect('/dashboard');
     }
 
-    public function test_if_dude_cant_login() 
+    public function test_if_dude_cant_login()
     {
         $dude = Dudes::factory()->create();
         $this->assertModelExists($dude);
@@ -38,7 +38,7 @@ class DudesTest extends TestCase
         $response->assertSessionHasErrors(['email']);
     }
 
-    public function test_if_dude_can_register() 
+    public function test_if_dude_can_register()
     {
         $response = $this->post('/register', [
             'login' => 'login',
@@ -50,7 +50,7 @@ class DudesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-    public function test_if_dude_cant_register() 
+    public function test_if_dude_cant_register()
     {
         $response = $this->post('/register', [
             'login' => 'login',
@@ -59,6 +59,6 @@ class DudesTest extends TestCase
             'rpassword' => 'rpassword'
         ]);
 
-        $response->assertSessionHasErrors(['password']);
+        $response->assertSessionHasErrors(['rpassword']);
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request\CreateUserRequest;
-use App\Http\Request\LoginUserRequest;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\LoginUserRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +18,13 @@ class UserController extends Controller
     {
         $this->repository = $repository;
     }
-    
+
     public function show()
     {
         return view('login');
     }
 
-    public function logout(UserLogoutRequest $request)
+    public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
@@ -41,29 +41,31 @@ class UserController extends Controller
     public function dashboard()
     {
         $data['user'] = Auth::user();
-        
+
         return $this->load('dashboard', $data);
     }
-    
+
     public function create_user(CreateUserRequest $request)
     {
         $data = $request->validated();
+
         $this->repository->create($data);
 
         return redirect('/login');
     }
-      
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
 
-        if (Auth::attempt($credentials)) {
+    public function login(LoginUserRequest $request)
+    {
+        $data = $request->validated();
+
+        if (Auth::attempt($data)) {
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
         }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 }
