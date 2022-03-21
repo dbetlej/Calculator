@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\Dudes;
 use Illuminate\Support\Facades\Hash;
+
+use App\Models\Movies;
+use App\Models\Users;
 
 class UserRepository {
 
@@ -11,17 +13,17 @@ class UserRepository {
 
     public function __construct()
     {
-        $this->model = new Dudes();
+        $this->model = new Users();
     }
 
     public function create(array $payload): bool
     {
         $tempPass = Hash::make($payload['password']);
-        
-        $dude = $this->model->factory()->create([
+        //todo:
+        $user = $this->model->factory()->create([
             'login' => ucfirst($payload['login']),
             'email' => $payload['email'],
-            'password' => $tempPass,        
+            'password' => $tempPass,
         ]);
 
         return true;

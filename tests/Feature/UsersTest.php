@@ -3,42 +3,41 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Models\Dudes;
+use App\Models\Users;
 
-class DudesTest extends TestCase
+class UsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_if_dude_can_login()
+    public function test_if_user_can_login()
     {
-        $dude = Dudes::factory()->create();
-        $this->assertModelExists($dude);
+        $user = Users::factory()->create();
+        $this->assertModelExists($user);
 
         $response = $this->post('/login', [
-            'email' => $dude->email,
+            'email' => $user->email,
             'password' => 'password'
         ]);
 
         $response->assertRedirect('/dashboard');
     }
 
-    public function test_if_dude_cant_login()
+    public function test_if_user_cant_login()
     {
-        $dude = Dudes::factory()->create();
-        $this->assertModelExists($dude);
+        $user = Users::factory()->create();
+        $this->assertModelExists($user);
 
         $response = $this->post('/login', [
-            'email' => $dude->email,
+            'email' => $user->email,
             'password' => 'passwsordXD'
         ]);
 
         $response->assertSessionHasErrors(['email']);
     }
 
-    public function test_if_dude_can_register()
+    public function test_if_user_can_register()
     {
         $response = $this->post('/register', [
             'login' => 'login',
@@ -50,7 +49,7 @@ class DudesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-    public function test_if_dude_cant_register()
+    public function test_if_user_cant_register()
     {
         $response = $this->post('/register', [
             'login' => 'login',
