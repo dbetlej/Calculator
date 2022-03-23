@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Database\Factories\DudesFactory;
 
 class Dudes extends Model
 {
     use HasFactory;
-    
+
      /**
      * The attributes that are mass assignable.
      *
@@ -35,7 +34,7 @@ class Dudes extends Model
     protected $table = 'dudes';
     public $incrementing = true;
     public $timestamps = true;
-    
+
     protected $attributes = [
         'login' => '',
         'email' => '',
@@ -48,8 +47,8 @@ class Dudes extends Model
     ];
 
     /**
-   * Create a new factory instance for the model.
-     *
+    * Create a new factory instance for the model.
+    *
     * @return \Illuminate\Database\Eloquent\Factories\Factory
     */
     protected static function newFactory()

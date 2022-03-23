@@ -8,8 +8,6 @@ use App\Http\Requests\LoginUserRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Dudes;
-
 class UserController extends Controller
 {
     public $repository;

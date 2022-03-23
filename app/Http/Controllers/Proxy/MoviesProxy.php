@@ -8,12 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Movies;
-
 class MoviesProxy extends Controller implements MoviesInterface
 {
     private $movies;
-    
+
     public function __construct(MoviesController $movies)
     {
         $this->movies = $movies;

@@ -3,14 +3,13 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Movies;
 
 class MoviesTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function test_check_create_movie()
     {
         $movie = Movies::factory()->create();
