@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Proxy\MoviesProxy;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,22 +16,16 @@ use App\Http\Controllers\Proxy\MoviesProxy;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-// User
-Route::get('/register', [UserController::class, 'register']);
-Route::post('/register', [UserController::class, 'create_user']);
-Route::get('/login', [UserController::class, 'show']);
-Route::post('/login', [UserController::class, 'login']);
-Route::get('/logout', [UserController::class, 'logout']);
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Dashboard
-Route::get('/dashboard', [UserController::class, 'dashboard']);
-
-// Movie URIs
-Route::get('/add_movies', [MoviesProxy::class, 'add_movies']); // (form) create movie
-Route::post('/add_movies', [MoviesProxy::class, 'save_movie']); // create movie
-Route::get('/movie/{movieId}', [MoviesProxy::class, 'get_movie']); // show movie
-Route::post('/movie/{movieId}', [MoviesProxy::class, 'edit_movie']); // update movie
-Route::delete('/movie/{movieId}', [MoviesProxy::class, 'delete_movie']); // destroy movie
+require __DIR__.'/auth.php';
