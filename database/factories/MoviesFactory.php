@@ -4,26 +4,27 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Movies;
-
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movie>
+ */
 class MoviesFactory extends Factory
 {
-    protected $model = Movies::class;
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function definition()
     {
         return [
             'name' => $this->faker->name(),
             'url' => $this->faker->url(),
-            'favourite' => 0,
-            'watched' => 0,       
-            'series' => null,
-            'created_at' => now(),
-            'updated_at' => now()
+            'description' => $this->faker->text(300),
+            'series' => $this->faker->text(100),
+            'category' => $this->faker->text(110),
+            'favorite' => $this->faker->boolean(),
+            'watched' => $this->faker->boolean(),
+            'to_watch' => $this->faker->boolean(),
         ];
     }
 }

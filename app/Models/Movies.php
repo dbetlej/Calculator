@@ -9,17 +9,35 @@ class Movies extends Model
 {
     use HasFactory;
 
-    protected $table = 'movies';
-    public $incrementing = true;
-    public $timestamps = true;
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $attributes = [
         'name' => false,
         'url' => false,
-        'favourite' => 0,
-        'watched' => 0,
+        'description' => null,
         'series' => null,
-        'created_at' => false,
-        'updated_at' => false
+        'category' => null,
+        'favorite' => null,
+        'watched' => null,
+        'to_watch' => null,
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'url',
+        'description',
+        'series',
+        'category',
+        'favorite',
+        'watched',
+        'to_watch',
     ];
 }

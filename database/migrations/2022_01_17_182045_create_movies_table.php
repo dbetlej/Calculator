@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMoviesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,14 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('url')->unique();
-            $table->string('series')->nullable();
-            $table->boolean('favourite');
-            $table->boolean('watched');
+            $table->string('name', 120)->unique();
+            $table->string('url', 500)->nullable();
+            $table->string('description', 1200)->nullable();
+            $table->string('series', 120)->nullable();
+            $table->string('category', 120)->nullable();
+            $table->boolean('favorite')->nullable();
+            $table->boolean('watched')->nullable();
+            $table->boolean('to_watch')->nullable();
             $table->timestamps();
         });
     }
@@ -33,4 +36,4 @@ class CreateMoviesTable extends Migration
     {
         Schema::dropIfExists('movies');
     }
-}
+};
